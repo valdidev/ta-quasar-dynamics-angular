@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class LoginPageComponent {
   public form: FormGroup;
+  public isLoading: boolean = false;
 
   constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
     this.form = this.formBuilder.group({
@@ -25,9 +26,20 @@ export class LoginPageComponent {
 
     if (email === 'test@test.com' && password === '123123') {
       console.log('nice');
+      this.fakeDelay()
     } else {
-      this.openSnackBar()
+      this.openSnackBar();
+      this.form.reset();
     }
+  }
+
+  // mocking delay //TODO: fake delay
+  fakeDelay() {
+    this.isLoading = true;
+    setTimeout(() => {
+      // redirect to //TODO: redirect to
+      this.isLoading = false;
+    }, 1500);
   }
 
   // TODO: service

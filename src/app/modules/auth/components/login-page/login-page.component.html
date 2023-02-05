@@ -1,6 +1,9 @@
 <div class="container-center" (submit)="tryLogin()">
   <div class="login-box">
-    <form [formGroup]="form">
+
+    <mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
+
+    <form *ngIf="!isLoading" [formGroup]="form">
       <img
         src="./assets/img/quasardynamics.png"
         alt="quasar dynamics"
