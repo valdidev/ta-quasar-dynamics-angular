@@ -50,7 +50,8 @@ export class UsersPageComponent implements OnInit {
   }
 
   // actions
-  removeUser(userId: number) {
-    this.usersService.deleteUserById(userId);
+  removeUser(userId: number, userIndex: number) {
+    this.usersService.deleteUserById(userId, userIndex);
+    this.loadUsers();
   }
 }

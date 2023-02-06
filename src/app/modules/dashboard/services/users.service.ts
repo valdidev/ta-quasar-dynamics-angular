@@ -54,11 +54,15 @@ export class UsersService {
   constructor() {}
 
   getUsers() {
-    return this.usersList
+    return this.usersList;
   }
 
-  deleteUserById(userId: number) {
+  deleteUserById(userId: number, userIndex: number) {
     //TODO: delete http
-    console.log("http delete", userId);
+    // http delete
+    console.log('http delete', userId);
+
+    // mocking delete
+    this.usersList.splice(userIndex, 1);
   }
 }
