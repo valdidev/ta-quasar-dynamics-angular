@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 
 // material
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-// utils
-import { passwordMatchValidator } from '@shared/utils/utils';
+// services
 import { AuthService } from '@modules/auth/services/auth.service';
 
 @Component({
@@ -42,7 +46,7 @@ export class RegisterPageComponent implements OnInit {
         ]),
       },
       {
-        validators: passwordMatchValidator(this.registerForm),
+        validators: passwordMatchValidator,
       }
     );
   }
@@ -53,7 +57,7 @@ export class RegisterPageComponent implements OnInit {
     this.authService.httpPostRegister(registerBody).subscribe({
       next: () => {
         this.loader();
-        this.openSnackBar('Successfully registered')
+        this.openSnackBar('Successfully registered');
       },
       error: (err) => {
         const { error } = err.error;
@@ -77,4 +81,11 @@ export class RegisterPageComponent implements OnInit {
       verticalPosition: 'top',
     });
   }
+}
+
+function passwordMatchValidator(formCurrent: AbstractControl | FormGroup): any {
+  const valuePassword = formCurrent.get('password')?.value;
+  const valuePasswordConfirm = formCurrent.get('confirmPassword')?.value;
+
+  return valuePassword === valuePasswordConfirm ? null : { mismatch: true };
 }
