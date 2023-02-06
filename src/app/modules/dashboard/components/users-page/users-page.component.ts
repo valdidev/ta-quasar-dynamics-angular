@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '@shared/interfaces/user';
 
@@ -64,11 +65,13 @@ export class UsersPageComponent {
   ];
   public dataSource = new MatTableDataSource(usersList);
 
-  // mat pagination
+  // mat pagination and sort
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   // mat table search bar
