@@ -1,1 +1,49 @@
-<p>create-user-page works!</p>
+<div class="container">
+  <mat-toolbar>
+    <span>Create user</span>
+  </mat-toolbar>
+
+  <mat-card class="space-top">
+    <form class="space-top">
+      <mat-grid-list cols="4" rowHeight="12vh">
+        <!-- Email -->
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="form-child">
+            <mat-label>Email</mat-label>
+            <input matInput autocomplete="off" />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Img -->
+        <mat-grid-tile [colspan]="3" [rowspan]="4">
+          <img
+            src="./assets/img/quasardynamics.png"
+            class="form-img"
+            alt="quasar dynamics"
+          />
+        </mat-grid-tile>
+
+        <!-- Name -->
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="form-child">
+            <mat-label>Name</mat-label>
+            <input matInput autocomplete="off" />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Surname -->
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <mat-form-field class="form-child">
+            <mat-label>Surname</mat-label>
+            <input matInput autocomplete="off" />
+          </mat-form-field>
+        </mat-grid-tile>
+
+        <!-- Button -->
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <button mat-raised-button color="primary">Create</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
+  </mat-card>
+</div>
