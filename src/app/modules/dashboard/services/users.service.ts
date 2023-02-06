@@ -57,6 +57,15 @@ export class UsersService {
     return this.usersList;
   }
 
+  postUser(userBody: User){
+    //TODO: post http
+    // http post
+    console.log('http post', userBody);
+
+    // mocking create
+    this.usersList.unshift(userBody)
+  }
+
   deleteUserById(userId: number, userIndex: number) {
     //TODO: delete http
     // http delete
@@ -64,5 +73,11 @@ export class UsersService {
 
     // mocking delete
     this.usersList.splice(userIndex, 1);
+  }
+
+  generateID() {
+    let number = Date.now();
+    let id = number.toString().slice(-4);
+    return parseInt(id);
   }
 }

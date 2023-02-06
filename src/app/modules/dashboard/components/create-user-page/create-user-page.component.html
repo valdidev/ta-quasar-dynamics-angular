@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [formGroup]="form">
   <mat-toolbar>
     <span>Create user</span>
     <span class="bar-spacer"></span>
@@ -13,13 +13,18 @@
   </mat-toolbar>
 
   <mat-card class="space-top">
-    <form class="space-top">
+    <form class="space-top" (submit)="createUser()">
       <mat-grid-list cols="4" rowHeight="12vh">
         <!-- Email -->
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           <mat-form-field class="form-child">
             <mat-label>Email</mat-label>
-            <input matInput autocomplete="off" />
+            <input
+              type="text"
+              autocomplete="off"
+              matInput
+              formControlName="email"
+            />
           </mat-form-field>
         </mat-grid-tile>
 
@@ -36,7 +41,12 @@
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           <mat-form-field class="form-child">
             <mat-label>Name</mat-label>
-            <input matInput autocomplete="off" />
+            <input
+              type="text"
+              autocomplete="off"
+              matInput
+              formControlName="name"
+            />
           </mat-form-field>
         </mat-grid-tile>
 
@@ -44,13 +54,25 @@
         <mat-grid-tile [colspan]="2" [rowspan]="1">
           <mat-form-field class="form-child">
             <mat-label>Surname</mat-label>
-            <input matInput autocomplete="off" />
+            <input
+              type="text"
+              autocomplete="off"
+              matInput
+              formControlName="surname"
+            />
           </mat-form-field>
         </mat-grid-tile>
 
         <!-- Button -->
         <mat-grid-tile [colspan]="2" [rowspan]="1">
-          <button mat-raised-button color="primary">Create</button>
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="form.invalid"
+          >
+            Create
+          </button>
         </mat-grid-tile>
       </mat-grid-list>
     </form>
