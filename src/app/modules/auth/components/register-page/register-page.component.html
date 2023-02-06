@@ -3,9 +3,8 @@
     <mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
 
     <mat-card>
-      <mat-card-content>
-        <form *ngIf="!isLoading" [formGroup]="form">
-
+      <mat-card-content *ngIf="!isLoading">
+        <form [formGroup]="registerForm">
           <h1 class="auth-title">REGISTER</h1>
 
           <img
@@ -49,7 +48,7 @@
             class="form-child form-btn"
             type="submit"
             color="primary"
-            [disabled]="form.invalid"
+            [disabled]="registerForm.invalid"
           >
             REGISTER
           </button>
