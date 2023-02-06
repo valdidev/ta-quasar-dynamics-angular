@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { UsersService } from '@modules/dashboard/services/users.service';
 import { User } from '@shared/interfaces/user';
@@ -15,6 +16,7 @@ export class CreateUserPageComponent {
   constructor(
     private formBuilder: FormBuilder,
     private usersService: UsersService,
+    private snackBar: MatSnackBar,
     private router: Router
   ) {
     this.form = this.formBuilder.group({
@@ -36,6 +38,13 @@ export class CreateUserPageComponent {
     };
 
     this.usersService.postUser(userBody);
+    
     this.router.navigate(['/', 'dashboard']);
+
+    this.snackBar.open(`User ${email} created successfully`, '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      duration: 3000,
+    });
   }
 }
