@@ -1,61 +1,18 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { UsersService } from '@modules/dashboard/services/users.service';
 import { User } from '@shared/interfaces/user';
-
-// TODO: hardcoded for now
-const usersList: User[] = [
-  {
-    id: 7,
-    email: 'michael.lawson@reqres.in',
-    first_name: 'Michael',
-    last_name: 'Lawson',
-    avatar: 'https://reqres.in/img/faces/7-image.jpg',
-  },
-  {
-    id: 8,
-    email: 'lindsay.ferguson@reqres.in',
-    first_name: 'Lindsay',
-    last_name: 'Ferguson',
-    avatar: 'https://reqres.in/img/faces/8-image.jpg',
-  },
-  {
-    id: 9,
-    email: 'tobias.funke@reqres.in',
-    first_name: 'Tobias',
-    last_name: 'Funke',
-    avatar: 'https://reqres.in/img/faces/9-image.jpg',
-  },
-  {
-    id: 10,
-    email: 'byron.fields@reqres.in',
-    first_name: 'Byron',
-    last_name: 'Fields',
-    avatar: 'https://reqres.in/img/faces/10-image.jpg',
-  },
-  {
-    id: 11,
-    email: 'george.edwards@reqres.in',
-    first_name: 'George',
-    last_name: 'Edwards',
-    avatar: 'https://reqres.in/img/faces/11-image.jpg',
-  },
-  {
-    id: 12,
-    email: 'rachel.howell@reqres.in',
-    first_name: 'Rachel',
-    last_name: 'Howell',
-    avatar: 'https://reqres.in/img/faces/12-image.jpg',
-  },
-];
 
 @Component({
   selector: 'app-users-page',
   templateUrl: './users-page.component.html',
   styleUrls: ['./users-page.component.css'],
 })
-export class UsersPageComponent {
+export class UsersPageComponent implements OnInit {
+  public usersList: User[] = [];
+
   public displayedColumns: string[] = [
     'id',
     'email',
@@ -63,7 +20,8 @@ export class UsersPageComponent {
     'surname',
     'actions',
   ];
-  public dataSource = new MatTableDataSource(usersList);
+
+  public dataSource!: MatTableDataSource<any>;
 
   // mat pagination and sort
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -72,6 +30,17 @@ export class UsersPageComponent {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit(): void {
+    this.loadUsers();
+  }
+
+  loadUsers() {
+    this.usersList = this.usersService.getUsers();
+    this.dataSource = new MatTableDataSource(this.usersList);
   }
 
   // mat table search bar
