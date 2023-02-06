@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+
+// material
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+// utils
 import { passwordMatchValidator } from '@shared/utils/utils';
+import { AuthService } from '@modules/auth/services/auth.service';
 
 @Component({
   selector: 'app-register-page',
@@ -13,13 +18,18 @@ export class RegisterPageComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
   public isLoading: boolean = false;
 
-  constructor(private snackBar: MatSnackBar, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.registerForm = new FormGroup(
       {
         email: new FormControl('', [
           Validators.required,
+          Validators.email,
           Validators.minLength(10),
         ]),
         password: new FormControl('', [
@@ -37,31 +47,31 @@ export class RegisterPageComponent implements OnInit {
     );
   }
 
-  // mocking login for now //TODO: fake login
   tryRegister() {
-    const { email, password } = this.registerForm.value;
+    const registerBody = this.registerForm.value;
 
-    if (email === 'test@test.com' && password === '123123') {
-      console.log('nice');
-      this.fakeDelay();
-    } else {
-      this.openSnackBar();
-      this.registerForm.reset();
-    }
+    this.authService.httpPostRegister(registerBody).subscribe({
+      next: () => {
+        this.loader();
+        this.openSnackBar('Successfully registered')
+      },
+      error: (err) => {
+        const { error } = err.error;
+        this.openSnackBar(error);
+        this.registerForm.reset();
+      },
+    });
   }
 
-  // mocking delay //TODO: fake delay
-  fakeDelay() {
+  loader() {
     this.isLoading = true;
     setTimeout(() => {
-      // redirect to //TODO: redirect to
       this.router.navigate(['/', 'auth', 'login']);
     }, 1500);
   }
 
-  // TODO: service
-  openSnackBar() {
-    this.snackBar.open('Wrong email or password', '', {
+  openSnackBar(msg: string = 'Something went wrong') {
+    this.snackBar.open(msg, '', {
       duration: 3000,
       horizontalPosition: 'center',
       verticalPosition: 'top',
