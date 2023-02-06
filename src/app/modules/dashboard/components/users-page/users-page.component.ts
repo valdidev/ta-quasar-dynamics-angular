@@ -48,4 +48,9 @@ export class UsersPageComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
+
+  // actions
+  deleteUser(userId: number) {
+    console.log(userId);
+  }
 }
