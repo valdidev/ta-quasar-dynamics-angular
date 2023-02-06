@@ -3,8 +3,8 @@
     <mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
 
     <mat-card>
-      <mat-card-content>
-        <form *ngIf="!isLoading" [formGroup]="form">
+      <mat-card-content *ngIf="!isLoading">
+        <form  [formGroup]="form">
 
           <h1 class="auth-title">LOGIN</h1>
           
