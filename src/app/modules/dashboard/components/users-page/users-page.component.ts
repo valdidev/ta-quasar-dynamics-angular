@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsersService } from '@modules/dashboard/services/users.service';
@@ -32,7 +33,10 @@ export class UsersPageComponent implements OnInit {
     this.dataSource.sort = this.sort;
   }
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private snackBar: MatSnackBar
+  ) {}
 
   ngOnInit(): void {
     this.loadUsers();
@@ -50,8 +54,13 @@ export class UsersPageComponent implements OnInit {
   }
 
   // actions
-  removeUser(userId: number, userIndex: number) {
-    this.usersService.deleteUserById(userId, userIndex);
+  removeUser(user: User, userIndex: number) {
+    this.usersService.deleteUserById(user.id, userIndex);
+    this.snackBar.open(`User ${user.email} deleted successfully`, '', {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      duration: 1500,
+    });
     this.loadUsers();
   }
 }
