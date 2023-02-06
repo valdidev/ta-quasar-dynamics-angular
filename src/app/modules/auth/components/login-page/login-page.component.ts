@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 // material
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -10,31 +10,37 @@ import { Router } from '@angular/router';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.css'],
 })
-export class LoginPageComponent {
-  public form: FormGroup;
+export class LoginPageComponent implements OnInit {
+  loginForm: FormGroup = new FormGroup({});
   public isLoading: boolean = false;
 
-  constructor(
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar,
-    private router: Router
-  ) {
-    this.form = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(5)]],
+  constructor(private snackBar: MatSnackBar, private router: Router) {}
+
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      // 2. *
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(10),
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.minLength(6),
+      ]),
     });
   }
 
   // mocking login for now //TODO: fake login
   tryLogin() {
-    const { email, password } = this.form.value;
+    const { email, password } = this.loginForm.value;
 
     if (email === 'test@test.com' && password === '123123') {
       console.log('nice');
       this.fakeDelay();
     } else {
       this.openSnackBar();
-      this.form.reset();
+      this.loginForm.reset();
     }
   }
 
