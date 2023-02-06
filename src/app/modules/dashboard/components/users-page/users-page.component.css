@@ -15,6 +15,12 @@ a {
   padding: 0 0.5em;
 }
 
+/* empty table */
+.no-users {
+  text-align: center;
+  padding-top: 5em;
+}
+
 /* table filter */
 .mat-mdc-form-field {
   font-size: 14px;
