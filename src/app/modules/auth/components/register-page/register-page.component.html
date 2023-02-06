@@ -1,1 +1,64 @@
-<p>register-page works!</p>
+<div class="container-center" (submit)="tryRegister()">
+  <div class="auth-box">
+    <mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
+
+    <mat-card>
+      <mat-card-content>
+        <form *ngIf="!isLoading" [formGroup]="form">
+
+          <h1 class="auth-title">REGISTER</h1>
+
+          <img
+            src="./assets/img/quasardynamics.png"
+            alt="quasar dynamics"
+            class="auth-img"
+          />
+
+          <mat-form-field class="form-child" appearance="fill">
+            <mat-label>Email</mat-label>
+            <input
+              matInput
+              type="text"
+              autocomplete="off"
+              formControlName="email"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form-child" appearance="fill">
+            <mat-label>Password</mat-label>
+            <input
+              matInput
+              type="password"
+              autocomplete="off"
+              formControlName="password"
+            />
+          </mat-form-field>
+
+          <mat-form-field class="form-child" appearance="fill">
+            <mat-label>Confirm password</mat-label>
+            <input
+              matInput
+              type="password"
+              autocomplete="off"
+              formControlName="confirmPassword"
+            />
+          </mat-form-field>
+
+          <button
+            mat-raised-button
+            class="form-child form-btn"
+            type="submit"
+            color="primary"
+            [disabled]="form.invalid"
+          >
+            REGISTER
+          </button>
+        </form>
+
+        <div class="space-top">
+          <p>Do you have an account? <a routerLink="/auth/login">Login</a></p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

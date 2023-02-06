@@ -14,6 +14,51 @@ body {
   margin-top: 1vh;
 }
 
+/* auth pages */
+
+.container-center {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  align-items: center;
+}
+
+.auth-box {
+  width: 100%;
+  max-width: 33%;
+  text-align: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-title {
+  margin-bottom: 0 !important;
+  color: #0097BF;
+  text-shadow: 2px 2px 2px#ccc;
+  font-weight: bolder;
+}
+
+.auth-img {
+  height: 15vh;
+  width: 15vh;
+  padding: 1em 0;
+}
+
+/* form */
+
+.form-child {
+  width: 80%;
+}
+
+.form-btn {
+    height: 3em;
+}
+
+/* spacing */
+
 .bar-spacer {
   flex: 1 1 auto;
 }
@@ -21,6 +66,8 @@ body {
 .space-top {
   margin-top: 1vh;
 }
+
+/* others */
 
 .mat-sort-header-container {
   justify-content: center;
