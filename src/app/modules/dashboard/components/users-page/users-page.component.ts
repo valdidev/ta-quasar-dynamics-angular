@@ -50,7 +50,7 @@ export class UsersPageComponent implements OnInit {
   }
 
   // actions
-  deleteUser(userId: number) {
-    console.log(userId);
+  removeUser(userId: number) {
+    this.usersService.deleteUserById(userId);
   }
 }

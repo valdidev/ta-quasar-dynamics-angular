@@ -54,7 +54,11 @@ export class UsersService {
   constructor() {}
 
   getUsers() {
-    // copy of array
-    return this.usersList.slice();
+    return this.usersList
+  }
+
+  deleteUserById(userId: number) {
+    //TODO: delete http
+    console.log("http delete", userId);
   }
 }
