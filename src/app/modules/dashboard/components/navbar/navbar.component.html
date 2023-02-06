@@ -1,12 +1,13 @@
 <mat-toolbar color="primary">
-  <span>Dashboard</span>
+  <span class="navbar-title" routerLink="/dashboard">Dashboard</span>
   <span class="navbar-spacer"></span>
-  <button mat-button>Users</button>
+  <button mat-button routerLink="/dashboard">Users</button>
   <span class="navbar-spacer"></span>
   <button
     mat-icon-button
     color="secondary"
     aria-label="Example icon button with a home icon"
+    routerLink="/logout"
   >
     <mat-icon>logout</mat-icon>
   </button>
