@@ -1,6 +1,15 @@
 <div class="container">
   <mat-toolbar>
     <span>All users</span>
+    <span class="bar-spacer"></span>
+    <button
+      mat-mini-fab
+      color="primary"
+      aria-label="add new user"
+      routerLink="/dashboard/create-user"
+    >
+      <mat-icon>person_add</mat-icon>
+    </button>
   </mat-toolbar>
 
   <div *ngIf="usersList.length > 0">

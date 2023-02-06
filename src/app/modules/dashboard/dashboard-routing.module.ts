@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardContainerComponent } from './container/dashboard-container.component';
 import { UsersPageComponent } from './components/users-page/users-page.component';
 import { UserDetailsPageComponent } from './components/user-details-page/user-details-page.component';
+import { CreateUserPageComponent } from './components/create-user-page/create-user-page.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,10 @@ const routes: Routes = [
       {
         path: '',
         component: UsersPageComponent,
+      },
+      {
+        path: 'create-user',
+        component: CreateUserPageComponent,
       },
       {
         path: 'user/:userId',

@@ -14,6 +14,10 @@ body {
   margin-top: 1vh;
 }
 
+.bar-spacer {
+  flex: 1 1 auto;
+}
+
 .mat-sort-header-container {
   justify-content: center;
   margin-left: 1.1em;
