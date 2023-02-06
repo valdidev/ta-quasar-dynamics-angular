@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { User } from '@shared/interfaces/user';
 
 // TODO: hardcoded for now
@@ -53,6 +54,18 @@ const usersList: User[] = [
   styleUrls: ['./users-page.component.css'],
 })
 export class UsersPageComponent {
-  public displayedColumns: string[] = ['id', 'email', 'name', 'surname', 'actions'];
-  public dataSource = usersList;
+  public displayedColumns: string[] = [
+    'id',
+    'email',
+    'name',
+    'surname',
+    'actions',
+  ];
+  public dataSource = new MatTableDataSource(usersList);
+
+  // table search method
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
 }

@@ -1,14 +1,22 @@
+/* generic table styles */
 table {
   width: 100%;
   margin-top: 1vh;
 }
 
-th, td {
+th,
+td {
   width: 20%;
   text-align: center;
 }
 
 a {
   cursor: pointer;
-  padding: 0 .5em;
+  padding: 0 0.5em;
+}
+
+/* table filter */
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
 }
