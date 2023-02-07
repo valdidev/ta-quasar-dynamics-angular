@@ -2,12 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-// material
-import { MatSnackBar } from '@angular/material/snack-bar';
-
 // services
-import { TokenService } from '@modules/auth/services/token.service';
 import { AuthService } from '@modules/auth/services/auth.service';
+import { CommonService } from '@shared/services/common.service';
 
 @Component({
   selector: 'app-login-page',
@@ -20,8 +17,7 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private tokenService: TokenService,
-    private snackBar: MatSnackBar,
+    private commonService: CommonService,
     private router: Router
   ) {}
 
@@ -45,14 +41,12 @@ export class LoginPageComponent implements OnInit {
     this.authService.httpPostLogin(loginBody).subscribe({
       next: (res) => {
         const { token } = res;
-        console.log(token);
-        this.tokenService.setToken(token);
-        console.log(token);
+        localStorage.setItem('reqres_token', token);
         this.loader();
       },
       error: (err) => {
         const { error } = err.error;
-        this.openSnackBar(error);
+        this.commonService.openSnackBar(error);
         this.loginForm.reset();
       },
     });
@@ -63,13 +57,5 @@ export class LoginPageComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['/', 'dashboard']);
     }, 1500);
-  }
-
-  openSnackBar(msg: string = 'Wrong email or password') {
-    this.snackBar.open(msg, '', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-    });
   }
 }

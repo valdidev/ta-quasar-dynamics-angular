@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { UsersService } from '@modules/dashboard/services/users.service';
 import { User } from '@shared/interfaces/user';
+
+// services
+import { UsersService } from '@modules/dashboard/services/users.service';
+import { CommonService } from '@shared/services/common.service';
 
 @Component({
   selector: 'app-create-user-page',
@@ -16,7 +18,7 @@ export class CreateUserPageComponent {
   constructor(
     private formBuilder: FormBuilder,
     private usersService: UsersService,
-    private snackBar: MatSnackBar,
+    private commonService: CommonService,
     private router: Router
   ) {
     this.form = this.formBuilder.group({
@@ -37,14 +39,15 @@ export class CreateUserPageComponent {
       last_name: surname,
     };
 
-    this.usersService.postUser(userBody);
-    
-    this.router.navigate(['/', 'dashboard']);
-
-    this.snackBar.open(`User ${email} created successfully`, '', {
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-      duration: 3000,
+    this.usersService.postUser(userBody).subscribe({
+      next: (res) => {
+        this.commonService.openSnackBar(`User ${userBody.email} created successfully`);
+        this.router.navigate(['/', 'dashboard']);
+      },
+      error: (err) => {
+        this.commonService.openSnackBar();
+        console.log(err);
+      },
     });
   }
 }

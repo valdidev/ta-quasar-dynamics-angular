@@ -7,11 +7,9 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 
-// material
-import { MatSnackBar } from '@angular/material/snack-bar';
-
 // services
 import { AuthService } from '@modules/auth/services/auth.service';
+import { CommonService } from '@shared/services/common.service';
 
 @Component({
   selector: 'app-register-page',
@@ -24,7 +22,7 @@ export class RegisterPageComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private snackBar: MatSnackBar,
+    private commonService: CommonService,
     private router: Router
   ) {}
 
@@ -57,11 +55,11 @@ export class RegisterPageComponent implements OnInit {
     this.authService.httpPostRegister(registerBody).subscribe({
       next: () => {
         this.loader();
-        this.openSnackBar('Successfully registered');
+        this.commonService.openSnackBar('Successfully registered');
       },
       error: (err) => {
         const { error } = err.error;
-        this.openSnackBar(error);
+        this.commonService.openSnackBar(error);
         this.registerForm.reset();
       },
     });
@@ -72,14 +70,6 @@ export class RegisterPageComponent implements OnInit {
     setTimeout(() => {
       this.router.navigate(['/', 'auth', 'login']);
     }, 1500);
-  }
-
-  openSnackBar(msg: string = 'Something went wrong') {
-    this.snackBar.open(msg, '', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top',
-    });
   }
 }
 

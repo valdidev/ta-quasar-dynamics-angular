@@ -1,5 +1,8 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '@shared/interfaces/user';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -51,30 +54,44 @@ export class UsersService {
     },
   ];
 
-  constructor() {}
+  private API_URL = environment.api;
 
+  public page = 1;
+
+  constructor(private httpClient: HttpClient) {}
+
+  // fake users
   getUsers() {
     return this.usersList;
   }
 
-  postUser(userBody: User){
-    //TODO: post http
-    // http post
-    console.log('http post', userBody);
+  // http get users
+  httpGetUsers(): Observable<any> {
+    return this.httpClient.get(`${this.API_URL}/users/?page${this.page}`);
+  }
 
+  httpGetUserById(userId: number): Observable<any> {
+    return this.httpClient.get(`${this.API_URL}/users/${userId}`);
+  }
+
+  postUser(userBody: User): Observable<any> {
     // mocking create
-    this.usersList.unshift(userBody)
+    this.usersList.unshift(userBody);
+
+    // http create user
+    return this.httpClient.post(`${this.API_URL}/users`, userBody);
   }
 
   deleteUserById(userId: number, userIndex: number) {
-    //TODO: delete http
-    // http delete
-    console.log('http delete', userId);
-
     // mocking delete
     this.usersList.splice(userIndex, 1);
+
+    // http delete user
+    console.log('http delete', userId);
+    return this.httpClient.delete(`${this.API_URL}/users/${userId}`);
   }
 
+  // simulating an id given by the api
   generateID() {
     let number = Date.now();
     let id = number.toString().slice(-4);
