@@ -42,7 +42,8 @@ export class LoginPageComponent implements OnInit {
       next: (res) => {
         const { token } = res;
         localStorage.setItem('reqres_token', token);
-        this.loader();
+        console.log('http post login', res);
+        this.fakeLoader();
       },
       error: (err) => {
         const { error } = err.error;
@@ -52,7 +53,7 @@ export class LoginPageComponent implements OnInit {
     });
   }
 
-  loader() {
+  fakeLoader() {
     this.isLoading = true;
     setTimeout(() => {
       this.router.navigate(['/', 'dashboard']);

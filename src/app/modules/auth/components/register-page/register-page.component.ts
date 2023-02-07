@@ -18,7 +18,6 @@ import { CommonService } from '@shared/services/common.service';
 })
 export class RegisterPageComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
-  public isLoading: boolean = false;
 
   constructor(
     private authService: AuthService,
@@ -44,6 +43,7 @@ export class RegisterPageComponent implements OnInit {
         ]),
       },
       {
+        // checking that both passwords match
         validators: passwordMatchValidator,
       }
     );
@@ -53,9 +53,10 @@ export class RegisterPageComponent implements OnInit {
     const registerBody = this.registerForm.value;
 
     this.authService.httpPostRegister(registerBody).subscribe({
-      next: () => {
-        this.loader();
+      next: (res) => {
         this.commonService.openSnackBar('Successfully registered');
+        console.log('http post register', res);
+        this.router.navigate(['/', 'auth', 'login']);
       },
       error: (err) => {
         const { error } = err.error;
@@ -64,15 +65,9 @@ export class RegisterPageComponent implements OnInit {
       },
     });
   }
-
-  loader() {
-    this.isLoading = true;
-    setTimeout(() => {
-      this.router.navigate(['/', 'auth', 'login']);
-    }, 1500);
-  }
 }
 
+// fn checks that both passwords match
 function passwordMatchValidator(formCurrent: AbstractControl | FormGroup): any {
   const valuePassword = formCurrent.get('password')?.value;
   const valuePasswordConfirm = formCurrent.get('confirmPassword')?.value;

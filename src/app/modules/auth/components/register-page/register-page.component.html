@@ -1,9 +1,7 @@
 <div class="container-center" (submit)="tryRegister()">
   <div class="auth-box">
-    <mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
-
     <mat-card>
-      <mat-card-content *ngIf="!isLoading">
+      <mat-card-content>
         <form [formGroup]="registerForm">
           <h1 class="auth-title">REGISTER</h1>
 

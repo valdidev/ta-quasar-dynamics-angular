@@ -12,6 +12,7 @@ body {
   margin-left: 5vw;
   margin-right: 5vw;
   margin-top: 1vh;
+  min-width: 550px;
 }
 
 /* auth pages */

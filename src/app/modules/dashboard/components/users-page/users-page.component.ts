@@ -43,6 +43,7 @@ export class UsersPageComponent implements OnInit {
     // http get all users service
     this.usersService.httpGetUsers().subscribe((response) => {
       this.usersList = response;
+      console.log('http get all users', response);
 
       // copy of array simulating deletion
       this.copyArray = this.usersList.slice();
