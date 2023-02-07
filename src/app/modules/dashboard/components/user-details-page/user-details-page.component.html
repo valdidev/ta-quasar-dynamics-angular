@@ -1,5 +1,60 @@
 <div class="container">
   <mat-toolbar>
     <span>User details</span>
+    <span class="bar-spacer"></span>
+    <button
+      mat-mini-fab
+      color="secondary"
+      aria-label="add new user"
+      routerLink="/dashboard"
+    >
+      <mat-icon>arrow_back</mat-icon>
+    </button>
   </mat-toolbar>
+
+  <mat-card class="space-top">
+    <div class="space-top">
+      <mat-grid-list cols="4" rowHeight="12vh">
+        <!-- Email -->
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <div>
+            <h2>Email</h2>
+            <p>{{ user.email }}</p>
+          </div>
+        </mat-grid-tile>
+
+        <!-- Img -->
+        <mat-grid-tile [colspan]="2" [rowspan]="4">
+          <img
+            src="{{ user.avatar }}"
+            class="user-img"
+            alt="{{ user.first_name }}"
+          />
+        </mat-grid-tile>
+
+        <!-- Name -->
+        <mat-grid-tile  [colspan]="2" [rowspan]="1">
+          <div class="user-detail-box">
+            <h2>Name</h2>
+            <p>{{ user.first_name }}</p>
+          </div>
+        </mat-grid-tile>
+
+        <!-- Surname -->
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <div>
+            <h2>Surname</h2>
+            <p>{{ user.last_name }}</p>
+          </div>
+        </mat-grid-tile>
+
+        <!-- Button -->
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <button type="submit" mat-raised-button color="primary">
+            Delete
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </div>
+  </mat-card>
 </div>
