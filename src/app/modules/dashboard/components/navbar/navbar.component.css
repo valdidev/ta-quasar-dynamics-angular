@@ -1,3 +1,11 @@
 .navbar-title {
   cursor: pointer;
 }
+
+.logout-icon{
+  transition: color 300ms;
+}
+
+.logout-icon:hover {
+  color: red;
+}
