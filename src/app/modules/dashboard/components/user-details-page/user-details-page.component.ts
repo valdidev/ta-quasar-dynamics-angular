@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsersService } from '@modules/dashboard/services/users.service';
-import { User } from '@shared/interfaces/user';
+import { User } from '@modules/dashboard/interfaces/user';
 
 @Component({
   selector: 'app-user-details-page',

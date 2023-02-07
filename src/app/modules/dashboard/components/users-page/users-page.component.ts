@@ -4,7 +4,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 
 // interfaces
-import { User } from '@shared/interfaces/user';
+import { User } from '@modules/dashboard/interfaces/user';
 
 // services
 import { CommonService } from '@shared/services/common.service';

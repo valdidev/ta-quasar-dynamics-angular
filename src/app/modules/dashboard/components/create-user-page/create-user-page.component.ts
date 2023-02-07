@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 // interfaces
-import { User } from '@shared/interfaces/user';
+import { User } from '@modules/dashboard/interfaces/user';
 
 // services
 import { UsersService } from '@modules/dashboard/services/users.service';
