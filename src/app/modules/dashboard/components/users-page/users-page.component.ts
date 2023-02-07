@@ -1,10 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+
+// angular material
 import { MatTableDataSource } from '@angular/material/table';
-import { UsersService } from '@modules/dashboard/services/users.service';
+
+// interfaces
 import { User } from '@shared/interfaces/user';
+
+// services
 import { CommonService } from '@shared/services/common.service';
+import { UsersService } from '@modules/dashboard/services/users.service';
 
 @Component({
   selector: 'app-users-page',
@@ -13,6 +17,10 @@ import { CommonService } from '@shared/services/common.service';
 })
 export class UsersPageComponent implements OnInit {
   public usersList: User[] = [];
+  public copyArray: User[] = [];
+
+  // mat table filter property
+  public dataSource!: MatTableDataSource<any>;
 
   public displayedColumns: string[] = [
     'id',
@@ -22,17 +30,6 @@ export class UsersPageComponent implements OnInit {
     'actions',
   ];
 
-  public dataSource!: MatTableDataSource<any>;
-
-  // mat pagination and sort
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
-
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   constructor(
     private usersService: UsersService,
     private commonService: CommonService
@@ -40,30 +37,41 @@ export class UsersPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadUsers();
-    this.loadApiUsers();
-  }
-
-  loadApiUsers() {
-    this.usersService.httpGetUsers().subscribe((response) => {
-      console.log(response);
-    });
   }
 
   loadUsers() {
-    this.usersList = this.usersService.getUsers();
-    this.dataSource = new MatTableDataSource(this.usersList);
+    // http get all users service
+    this.usersService.httpGetUsers().subscribe((response) => {
+      this.usersList = response;
+
+      // copy of array simulating deletion
+      this.copyArray = this.usersList.slice();
+
+      // filling mat table
+      this.dataSource = new MatTableDataSource(this.copyArray);
+    });
   }
 
-  // mat table search bar
+  refreshUsers() {
+    // refilling on each elimination
+    this.dataSource = new MatTableDataSource(this.copyArray);
+  }
+
+  // MAT TABLE FILTER
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  // actions
+  // DELETE USER
   removeUser(user: User, userIndex: number) {
-    this.usersService.deleteUserById(user.id, userIndex).subscribe({
-      next: (res) => {
+    // remove user from array copy
+    this.copyArray.splice(userIndex, 1);
+
+    // http delete request to API
+    this.usersService.deleteUserById(user.id).subscribe({
+      next: () => {
+        console.log('http delete sent to user with id:', user.id);
         this.commonService.openSnackBar(
           `User ${user.email} deleted successfully`
         );
@@ -74,6 +82,7 @@ export class UsersPageComponent implements OnInit {
       },
     });
 
-    this.loadUsers();
+    // refreshing table to see changes
+    this.refreshUsers();
   }
 }
