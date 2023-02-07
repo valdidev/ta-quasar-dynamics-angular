@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class ValidateSessionGuard implements CanActivate {
+export class AlreadyLoggedGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(
@@ -24,14 +24,13 @@ export class ValidateSessionGuard implements CanActivate {
     | UrlTree {
     return this.checkToken();
   }
-
   private checkToken(): boolean {
     let token = localStorage.getItem('reqres_token');
 
-    if (token !== null) {
+    if (token === null) {
       return true;
     } else {
-      this.router.navigate(['/', 'auth', 'login']);
+      this.router.navigate(['/', 'dashboard']);
       return false;
     }
   }
