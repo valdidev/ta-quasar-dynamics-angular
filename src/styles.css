@@ -37,7 +37,7 @@ body {
 
 .auth-title {
   margin-bottom: 0 !important;
-  color: #0097BF;
+  color: #0097bf;
   text-shadow: 2px 2px 2px#ccc;
   font-weight: bolder;
 }
@@ -55,7 +55,7 @@ body {
 }
 
 .form-btn {
-    height: 3em;
+  height: 3em;
 }
 
 /* spacing */

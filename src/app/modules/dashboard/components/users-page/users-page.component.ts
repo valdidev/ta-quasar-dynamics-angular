@@ -19,6 +19,8 @@ export class UsersPageComponent implements OnInit {
   public usersList: User[] = [];
   public copyArray: User[] = [];
 
+  public isLoading: boolean = true;
+
   // mat table filter property
   public dataSource!: MatTableDataSource<any>;
 
@@ -47,6 +49,9 @@ export class UsersPageComponent implements OnInit {
 
       // copy of array simulating deletion
       this.copyArray = this.usersList.slice();
+      if (this.copyArray.length > 0) {
+        this.isLoading = false;
+      }
 
       // filling mat table
       this.dataSource = new MatTableDataSource(this.copyArray);

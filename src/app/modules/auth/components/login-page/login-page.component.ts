@@ -20,21 +20,24 @@ export class LoginPageComponent implements OnInit {
     private commonService: CommonService,
     private router: Router
   ) {}
-
+  
+  /* Form validations */
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl('', [
         Validators.required,
         Validators.email,
         Validators.minLength(10),
+        Validators.maxLength(50),
       ]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(6),
+        Validators.maxLength(50),
       ]),
     });
   }
-
+  
   tryLogin() {
     const loginBody = this.loginForm.value;
 

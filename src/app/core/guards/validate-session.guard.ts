@@ -28,6 +28,7 @@ export class ValidateSessionGuard implements CanActivate {
   private checkToken(): boolean {
     let token = localStorage.getItem('reqres_token');
 
+    // if user has NO token, he is redirected to the public zone
     if (token !== null) {
       return true;
     } else {

@@ -15,10 +15,23 @@ a {
   padding: 0 0.5em;
 }
 
+/* spinner */
+.spinner-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 10vh;
+}
+
 /* empty table */
 .no-users {
   text-align: center;
   padding-top: 5em;
+  color: #444;
+}
+
+.no-users-icon {
+  font-size: 2em;
 }
 
 /* table filter */
@@ -28,7 +41,7 @@ a {
 }
 
 /* button */
-.create-user-icon{
+.create-user-icon {
   transition: color 300ms;
 }
 .create-user-icon:hover {

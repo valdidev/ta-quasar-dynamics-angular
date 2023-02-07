@@ -11,10 +11,12 @@ export class AuthService {
 
   constructor(private httpClient: HttpClient) {}
 
+  // http post login
   httpPostLogin(crendentials: { email: string; password: string }): Observable<any> {
     return this.httpClient.post(`${this.API_URL}/login`, crendentials)
   }
 
+  // http post register
   httpPostRegister(crendentials: { email: string; password: string }): Observable<any> {
     return this.httpClient.post(`${this.API_URL}/register`, crendentials)
   }

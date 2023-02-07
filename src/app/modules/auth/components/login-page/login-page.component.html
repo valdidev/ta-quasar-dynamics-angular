@@ -1,7 +1,9 @@
 <div class="container-center" (submit)="tryLogin()">
   <div class="auth-box">
+    <!-- Spinner -->
     <mat-spinner *ngIf="isLoading" diameter="50"></mat-spinner>
 
+    <!-- Login form -->
     <mat-card>
       <mat-card-content *ngIf="!isLoading">
         <form [formGroup]="loginForm">
@@ -44,8 +46,11 @@
           </button>
         </form>
 
+        <!-- Link to register page -->
         <div class="space-top">
-          <p>Dont have account? <a routerLink="/auth/register">Register</a></p>
+          <p>
+            Dont have an account? <a routerLink="/auth/register">Register</a>
+          </p>
         </div>
       </mat-card-content>
     </mat-card>

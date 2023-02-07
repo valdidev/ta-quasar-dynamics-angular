@@ -27,6 +27,7 @@ export class AlreadyLoggedGuard implements CanActivate {
   private checkToken(): boolean {
     let token = localStorage.getItem('reqres_token');
 
+    // if user has token, he is redirected to the private zone
     if (token === null) {
       return true;
     } else {

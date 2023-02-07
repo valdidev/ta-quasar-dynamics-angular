@@ -1,3 +1,13 @@
+/* spinner */
+
+.spinner-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+/* table */
+
 .user-img {
   width: 20vh;
   height: 20vh;
@@ -12,17 +22,11 @@
 }
 
 .grid-cell h2 {
-    font-size: 2em;
+  font-size: 2em;
 }
 
 .grid-cell p {
-    font-size: 2em;
-}
-
-.spinner-center {
-  display: flex;
-  justify-content: center;
-  margin-top: 10vh;
+  font-size: 2em;
 }
 
 .delete-btn {
@@ -32,7 +36,7 @@
   border: 2px solid #ff4742;
   color: #ff4742;
   background: 0 0;
-  padding: .5em 1em;
+  padding: 0.5em 1em;
   box-shadow: rgba(0, 0, 0, 0.07) 0px 2px 4px 0px,
     rgba(0, 0, 0, 0.05) 0px 1px 1.5px 0px;
   font-weight: 500;

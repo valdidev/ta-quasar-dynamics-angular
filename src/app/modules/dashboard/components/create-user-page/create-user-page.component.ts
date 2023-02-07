@@ -33,14 +33,16 @@ export class CreateUserPageComponent {
   createUser() {
     const { email, name, surname } = this.form.value;
 
+    // building body
     const userBody: User = {
-      // simulating the id that the api would be assigned
+      // simulating id that the api would be assigned
       id: this.usersService.generateID(),
       email,
       first_name: name,
       last_name: surname,
     };
 
+    // sending body, http post
     this.usersService.postUser(userBody).subscribe({
       next: (res) => {
         console.log('http post user', res);
