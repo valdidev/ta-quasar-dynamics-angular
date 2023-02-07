@@ -6,6 +6,10 @@
   cursor: pointer;
 }
 
+.navbar-button {
+  font-size: 1em;
+} 
+
 .logout-icon{
   transition: color 300ms;
 }

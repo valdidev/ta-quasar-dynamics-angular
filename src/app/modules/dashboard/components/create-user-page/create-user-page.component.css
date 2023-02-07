@@ -1,6 +1,11 @@
 /* form */
 .form-child {
-    width: 80%;
+    width: 70%;
+}
+
+.create-user-container {
+    min-height: 60vh;
+    padding-top: 5vh;
 }
 
 .form-img {
