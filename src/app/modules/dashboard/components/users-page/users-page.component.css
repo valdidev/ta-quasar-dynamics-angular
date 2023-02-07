@@ -26,3 +26,11 @@ a {
   font-size: 14px;
   width: 100%;
 }
+
+/* button */
+.create-user-icon{
+  transition: color 300ms;
+}
+.create-user-icon:hover {
+  color: rgb(62, 238, 62);
+}

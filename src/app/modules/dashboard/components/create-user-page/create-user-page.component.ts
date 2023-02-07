@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+
+// interfaces
 import { User } from '@shared/interfaces/user';
 
 // services
@@ -41,7 +43,10 @@ export class CreateUserPageComponent {
 
     this.usersService.postUser(userBody).subscribe({
       next: (res) => {
-        this.commonService.openSnackBar(`User ${userBody.email} created successfully`);
+        console.log('http post user', res);
+        this.commonService.openSnackBar(
+          `User ${userBody.email} created successfully`
+        );
         this.router.navigate(['/', 'dashboard']);
       },
       error: (err) => {
