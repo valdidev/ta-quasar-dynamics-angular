@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { UsersService } from '@modules/dashboard/services/users.service';
 import { User } from '@shared/interfaces/user';
+import { CommonService } from '@shared/services/common.service';
 
 @Component({
   selector: 'app-users-page',
@@ -35,11 +35,18 @@ export class UsersPageComponent implements OnInit {
 
   constructor(
     private usersService: UsersService,
-    private snackBar: MatSnackBar
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
     this.loadUsers();
+    this.loadApiUsers();
+  }
+
+  loadApiUsers() {
+    this.usersService.httpGetUsers().subscribe((response) => {
+      console.log(response);
+    });
   }
 
   loadUsers() {
@@ -55,12 +62,18 @@ export class UsersPageComponent implements OnInit {
 
   // actions
   removeUser(user: User, userIndex: number) {
-    this.usersService.deleteUserById(user.id, userIndex);
-    this.snackBar.open(`User ${user.email} deleted successfully`, '', {
-      horizontalPosition: 'center',
-      verticalPosition: 'bottom',
-      duration: 1500,
+    this.usersService.deleteUserById(user.id, userIndex).subscribe({
+      next: (res) => {
+        this.commonService.openSnackBar(
+          `User ${user.email} deleted successfully`
+        );
+      },
+      error: (err) => {
+        console.log(err);
+        this.commonService.openSnackBar();
+      },
     });
+
     this.loadUsers();
   }
 }
