@@ -1,27 +1,105 @@
-# TaQuasarDynamicsAngular
+#
+<h1 align="center"> HTTP CRUD Angular </h1>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.2.
+***
 
-## Development server
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/96445737/217403541-609cf421-5ce6-4cc5-9449-9a1554d93351.png" width="600" height="400">
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+</p>
 
-## Code scaffolding
+**[:es: ESPAÑOL](#es-rocker-stocker)**
+ - **[Probar](#probar-rocket)**
+ - **[Funcionalidades](#funcionalidades-heavy_check_mark)**
+ 
+#
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**[:uk: ENGLISH](#uk-rocker-stocker)**
+ - **[Try](#try-it-rocket)**
+ - **[Features](#features-heavy_check_mark)**
+***
+# :es: Prueba técnica - Quasar Dynamics
+## _Consumir el API pública [reqres.in](https://reqres.in/) con Angular_
 
-## Build
+***
+## Probar :rocket:
+[Haz click para visitar la APP](https://quasar-angular.netlify.app/)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### Credenciales para el registro e inicio de sesión
+#### _Correo electrónico_
+```sh
+eve.holt@reqres.in
+```
+#### _Contraseña_
+##### Cualquiera de 6 o más caracteres
 
-## Running unit tests
+***
+## Tecnologías :zap:
+- Angular 15
+- RxJS
+- Angular Material
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+***
 
-## Running end-to-end tests
+## Funcionalidades :heavy_check_mark:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Registro e Inicio de sesión
+- Lista de usuarios
+- Vista detalle de un usuario
+- Eliminar usuarios
+- Peticiones HTTP contra la API reqres.in
 
-## Further help
+***
+## Desplegada en Netlify :globe_with_meridians:
+<img src="https://user-images.githubusercontent.com/96445737/213220353-7f16719c-431b-466b-ad9b-a9cafa563788.png" width="200" height="100" />
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+[Netlify.com](https://www.netlify.com/)
+***
+
+## Autor 👨‍💻
+Fernando Valdivielso
+
+***
+***
+
+# :uk: Technical Assessment - Quasar Dynamics
+## _Send requests to public API [reqres.in](https://reqres.in/) with Angular_
+***
+
+## Try it :rocket:
+[Click to visit the APP](https://quasar-angular.netlify.app/)
+
+### Credentials for register and login
+#### _Email_
+```sh
+eve.holt@reqres.in
+```
+#### _Password_
+##### Any 6 or more characters
+
+***
+## UI Technologies :zap:
+- Angular 15
+- RxJS
+- Angular Material
+
+***
+
+## Features :heavy_check_mark:
+
+- Register and login with Token
+- User list
+- User details view
+- Delete users
+- HTTP requests to public API reqres.in
+
+***
+## Deploy on Netlify :globe_with_meridians:
+<img src="https://user-images.githubusercontent.com/96445737/213220353-7f16719c-431b-466b-ad9b-a9cafa563788.png" width="200" height="100" />
+
+[Netlify.com](https://www.netlify.com/)
+***
+
+## Author 👨‍💻
+Fernando Valdivielso
+
